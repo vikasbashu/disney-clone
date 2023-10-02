@@ -1,11 +1,14 @@
 import styled from "styled-components";
-import "./Login.css";
 
 const Login = (props) => {
     return <Container>
         <Content>
             <CTA>
                 <CTALogoOne src="/images/svg/cta-logo-one.svg" alt=""/>
+                <SignUp>GET ALL THERE</SignUp>
+                <Description>Get Premier Access to Raya and the Last Dragon for an additional fee with a Disney+ subscription. As of 02/10/23, the price of Disney+ Hotstar will increase by ₹100.
+                </Description>
+                <CTALogoTwo src="/images/png/cta-logo-two.png" alt=""/>
             </CTA>
             <BgImage/>
         </Content>
@@ -49,7 +52,7 @@ const CTA = styled.div`
     margin-bottom: 2vw;
     max-width: 650px;
     flex-wrap: wrap;
-    dispaly: flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     margin-top: 0;
@@ -57,12 +60,48 @@ const CTA = styled.div`
     margin-right: auto;
     text-align: center;
     align-items: center;
+    transition-timing-function: ease-out;
+    transition: opacity 0.2s;
+    width: 100%;
 `;
 const CTALogoOne = styled.img`
     margin-bottom: 12px;
     max-width: 600px;
     min-height: 1px;
     display: block;
+    width: 100%;
+`;
+
+const SignUp = styled.a`
+    font-weight: bold;
+    color: #f9f9f9;
+    background-color: #0063e5;
+    margin-bottom: 12px;
+    width: 100%;
+    letter-spacing: 1.5px;
+    font-size: 18px;
+    padding: 16.5px 0;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover{
+        background-color: #0483ee
+    }
+`;
+
+const Description = styled.p`
+    color: hsla(0, 0%, 95.3%, 1);
+    font-size: 11px;
+    margin: 0 0 24px;
+    line-height: 1.5;
+    letter-spacing: 1.5px;
+`;
+
+const CTALogoTwo = styled.img`
+    margin-bottom: 20px;
+    max-width: 600px;
+    vertical-align: bottom;
+    display: inline-block;
     width: 100%;
 `;
 
