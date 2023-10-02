@@ -1,0 +1,7 @@
+Container {
+overflow: hidden;
+display: flex;
+flex-direction: column;
+text-align: center;
+height: 100vh
+}
