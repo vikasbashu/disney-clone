@@ -7,7 +7,8 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  GithubAuthProvider
 } from "firebase/auth";
 import { 
     getDatabase, 
@@ -48,6 +49,7 @@ const auth = getAuth(app);
 const db = getDatabase(app);
 const firestore = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 const FirebaseContext = createContext(null);
 
 
@@ -65,6 +67,24 @@ export const FirebaseProvider = (props) => {
   };
   const signUpWithGoogle = () => {
     signInWithPopup(auth, googleProvider);
+  }
+  const signUpWithGithub = () => {
+    signInWithPopup(auth, githubProvider).
+    then((resp)=>{
+        const credential = GithubAuthProvider.credentialFromResult(resp);
+        const token = credential.accessToken;
+        const user = resp.user;
+        return [credential, token, user, resp];
+    }).
+    catch((error)=>{
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GithubAuthProvider.credentialFromError(error);
+        return [errorCode, errorMessage, email, credential, error];
+    });
   }
   const userLoginStatus = () => {
     onAuthStateChanged(auth,(user)=>{
