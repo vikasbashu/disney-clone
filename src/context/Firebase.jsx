@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState} from "react";
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -28,7 +28,12 @@ import {
     query,
     where,
     updateDoc
-} from "firebase/firestore"
+} from "firebase/firestore";
+import {getStorage,
+   ref as storageRef,
+    uploadBytes,
+  getDownloadURL
+} from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDohXBVM0C_uZSYN0sAVizjgAV6Ij5Pw8s",
@@ -51,11 +56,20 @@ const firestore = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 const FirebaseContext = createContext(null);
+const storage = getStorage(app);
 
 
 export const useFirebase = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = (props) => {
+
+  const [user, setUser] = useState(null);
+  useEffect(()=>{
+    onAuthStateChanged(auth,(user)=>{
+       user ? setUser(user) : setUser(null);
+  });
+  },[]);  
+
   const signUpUserWithEmailAndPassword = async (email, password) => {
     return await createUserWithEmailAndPassword(auth, email, password);
   };
@@ -69,14 +83,12 @@ export const FirebaseProvider = (props) => {
     signInWithPopup(auth, googleProvider);
   }
   const signUpWithGithub = () => {
-    signInWithPopup(auth, githubProvider).
-    then((resp)=>{
+    signInWithPopup(auth, githubProvider).then((resp)=>{
         const credential = GithubAuthProvider.credentialFromResult(resp);
         const token = credential.accessToken;
         const user = resp.user;
         return [credential, token, user, resp];
-    }).
-    catch((error)=>{
+    }).catch((error)=>{
         const errorCode = error.code;
         const errorMessage = error.message;
         // The email of the user's account used.
@@ -87,9 +99,8 @@ export const FirebaseProvider = (props) => {
     });
   }
   const userLoginStatus = () => {
-    onAuthStateChanged(auth,(user)=>{
-        return !user ? user : false;
-    });
+    if(user) return user;
+    else return null;
   }
   const writeDataInFireStore = async(key, data) => {
     await addDoc(collection(firestore, key), data);
@@ -99,7 +110,7 @@ export const FirebaseProvider = (props) => {
     return snap.data();
   }
   const getDocumentsByQuery = async(key, condition) => {
-    const snap = await getDocs(query(collection(firestore, key), where(condition)));
+    const snap = await getDocs(query(collection(firestore, key), condition));
     return snap;
   }
   const updateDocumentRecord = async(key, docId, data) => {
@@ -116,6 +127,14 @@ export const FirebaseProvider = (props) => {
     })
     return snap;
   }
+  const addDataInStorage = async (dir_path, data_file) => {
+    const uploadResult = await uploadBytes(storageRef(storage, `${dir_path}/${Date.now()}-${data_file}`), data_file);
+    return uploadResult;
+  }
+  const getStorageDataUrl = (path)=> {
+    return getDownloadURL(storageRef(storage, path));
+  }
+
   return (
     <FirebaseContext.Provider
       value={{
@@ -124,13 +143,18 @@ export const FirebaseProvider = (props) => {
         loginUser,
         signUpWithGoogle,
         userLoginStatus,
+        onAuthStateChanged,
         signOut,
         writeDataInFireStore,
         getDocument,
         getDocumentsByQuery,
         updateDocumentRecord,
         fetchDataFromRDB,
-        fetchRealTimeData
+        fetchRealTimeData,
+        signUpWithGithub,
+        addDataInStorage,
+        getStorageDataUrl,
+        where
       }}
     >
       {props.children}
