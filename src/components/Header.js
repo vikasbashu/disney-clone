@@ -7,7 +7,7 @@ const Header = (props) => {
     const handleAuth = async () =>{
         try{
             //console.log(await createUser("shapack@testmail.com", "Test@1233"));
-            console.log(await firebase.signUpWithGoogle());
+            //console.log(await firebase.signUpWithGoogle());
         }catch(err){
             console.log(err);
         }
