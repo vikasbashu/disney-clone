@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useFirebase } from "../context/Firebase";
 import { selectUserName,
 selectUserPhoto,
+setSignOutState,
 setUserLoginDetails } from "../features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -20,19 +21,31 @@ const Header = (props) => {
             setUser(resp);
             navigate("/home");
         }
-    },[username]);
-    const handleAuth = () =>{
-        try{
-            firebase.signUpWithGoogle();
-            const resp = firebase.userLoginStatus()
-            setUser(resp);
+    },[username, firebase, navigate]);
+    const handleAuth = async () =>{
+       if(!username){
+            try{
+                firebase.signUpWithGoogle();
+                const resp = firebase.userLoginStatus()
+                setUser(resp);
 
-        }catch(error){
-            console.log(error);
-        }
+            }catch(error){
+                console.log(error);
+                alert(error.message);
+            }
+       }else{
+            try{
+                firebase.logOut().then((ev)=>{
+                    dispatch(setSignOutState());
+                    navigate("/");
+                });
+            }catch(error){
+                alert(error.message);
+            }
+       }
     }
     const setUser = (user) => {
-        dispatch(setUserLoginDetails({
+        user && dispatch(setUserLoginDetails({
             name: user.displayName,
             email: user.email,
             photo: user.photoURL,
@@ -70,6 +83,11 @@ const Header = (props) => {
         </a>
     </NavMenu>
     <UserImg src={userPhoto} alt={username}/>
+    <SignOut>
+        <DropDown>
+            <span onClick={handleAuth}>Sign Out</span>
+        </DropDown>
+    </SignOut>
     </>
         }
         
@@ -187,6 +205,43 @@ const Login = styled.a`
     }
 `;
 const UserImg = styled.img`
-    height: 80%;
+    height: 100%;
+    cursor: pointer;
 `;
+const DropDown = styled.div`
+    position: absoulte;
+    top: 48px;
+    right: 0px;
+    background: rgb(19, 19, 19);
+    border: 1px solid rgba(151, 151, 151, 0.34);
+    box-shadow: rgb(0 0 0 / 50%) 0px 0px 18px 0px;
+    border-radius: 4px;
+    font-size: 14px;
+    letter-spacing: 3px;
+    width: 100px;
+    opacity: 0;
+    padding; 10px;
+`;
+const SignOut = styled.div`
+    position: relative;
+    height: 48px;
+    width: 48px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+    ${UserImg}{
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+    }
+    &:hover{
+        ${DropDown}{
+            opacity: 1;
+            transition-duration: 1s;
+        }
+    }
+    `;
+
 export default Header;
