@@ -58,7 +58,6 @@ const githubProvider = new GithubAuthProvider();
 const FirebaseContext = createContext(null);
 const storage = getStorage(app);
 
-
 export const useFirebase = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = (props) => {
@@ -134,6 +133,11 @@ export const FirebaseProvider = (props) => {
   const getStorageDataUrl = (path)=> {
     return getDownloadURL(storageRef(storage, path));
   }
+  const logOut = async () => {
+    try {
+      return await signOut(auth);
+    } catch (err) { }
+  }
 
   return (
     <FirebaseContext.Provider
@@ -144,7 +148,7 @@ export const FirebaseProvider = (props) => {
         signUpWithGoogle,
         userLoginStatus,
         onAuthStateChanged,
-        signOut,
+        logOut,
         writeDataInFireStore,
         getDocument,
         getDocumentsByQuery,
