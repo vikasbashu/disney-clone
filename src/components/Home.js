@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { useFirebase } from "../context/Firebase";
 import { useNavigate } from "react-router-dom";
+import { ImageSlider } from "./ImageSlider";
 
 const Home = (props) => {
     const firebase = useFirebase();
@@ -13,13 +14,7 @@ const Home = (props) => {
     return (
         
             <Container>
-                <h1>Hey</h1>
-                <h1>Hey</h1>
-                <h1>Hey</h1>
-                <h1>Hey</h1>
-                <h1>Hey</h1>
-                <h1>Hey</h1>
-                <h1>Hey</h1>
+                <ImageSlider/>
             </Container>
         
     );

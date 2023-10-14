@@ -209,7 +209,7 @@ const UserImg = styled.img`
     cursor: pointer;
 `;
 const DropDown = styled.div`
-    position: absoulte;
+    position: absolute;
     top: 48px;
     right: 0px;
     background: rgb(19, 19, 19);
