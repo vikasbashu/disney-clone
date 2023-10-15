@@ -4,6 +4,7 @@ import { useFirebase } from "../context/Firebase";
 import { useNavigate } from "react-router-dom";
 import { ImageSlider } from "./ImageSlider";
 import { Viewers } from "./Viewers";
+import { Recommended } from "./Recommends";
 
 const Home = (props) => {
     const firebase = useFirebase();
@@ -11,12 +12,13 @@ const Home = (props) => {
     const user = firebase.userLoginStatus();
     useEffect(()=>{
         ! user && navigate("/");
-    }, [user]);
+    }, [user, navigate]);
     return (
         
             <Container>
                 <ImageSlider/>
                 <Viewers/>
+                <Recommended/>
             </Container>
         
     );
