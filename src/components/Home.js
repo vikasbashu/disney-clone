@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useFirebase } from "../context/Firebase";
 import { useNavigate } from "react-router-dom";
 import { ImageSlider } from "./ImageSlider";
+import { Viewers } from "./Viewers";
 
 const Home = (props) => {
     const firebase = useFirebase();
@@ -15,6 +16,7 @@ const Home = (props) => {
         
             <Container>
                 <ImageSlider/>
+                <Viewers/>
             </Container>
         
     );
