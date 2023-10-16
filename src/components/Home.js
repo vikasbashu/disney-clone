@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { ImageSlider } from "./ImageSlider";
 import { Viewers } from "./Viewers";
 import { Recommended } from "./Recommends";
+import { NewOnDisney } from "./NewOnDisney";
+import { Trending } from "./Trending";
+import { WeekTop } from "./WeekTop10";
+import { Originals } from "./Originals";
 
 const Home = (props) => {
     const firebase = useFirebase();
@@ -19,6 +23,10 @@ const Home = (props) => {
                 <ImageSlider/>
                 <Viewers/>
                 <Recommended/>
+                <NewOnDisney/>
+                <Trending/>
+                <WeekTop/>
+                <Originals/>
             </Container>
         
     );
