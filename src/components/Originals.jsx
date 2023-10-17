@@ -8,22 +8,22 @@ export const Originals = (props) => {
             <Content>
                 <Wrap>
                     <Link to="/product/1">
-                        <img src="images/jpg/GOT.jpg" alt=""/>
+                        <img src="images/jpg/black-panther.jpg" alt=""/>
                     </Link>
                 </Wrap>
                 <Wrap>
                     <Link to="/product/1">
-                        <img src="images/jpg/sherlock.jpg" alt=""/>
+                        <img src="images/jpg/hulk.jpg" alt=""/>
                     </Link>
                 </Wrap>
                 <Wrap>
                     <Link to="/product/1">
-                        <img src="images/jpg/true-detective.jpg" alt=""/>
+                        <img src="images/jpg/Thor.jpg" alt=""/>
                     </Link>
                 </Wrap>
                 <Wrap>
                     <Link to="/product/1">
-                        <img src="images/jpg/miss-marvel.jpg" alt=""/>
+                        <img src="images/jpg/captain-marvel.jpg" alt=""/>
                     </Link>
                 </Wrap>
             </Content>
