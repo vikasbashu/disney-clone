@@ -4,13 +4,8 @@ import { Link } from "react-router-dom";
 export const WeekTop = (props) => {
     return (
         <Container>
-            <h4>Top 10 for this week :</h4>
+            <h4>Top 10 for this week</h4>
             <Content>
-                <Wrap>
-                    <Link to="/product/1">
-                        <img src="images/jpg/encore.jpg" alt=""/>
-                    </Link>
-                </Wrap>
                 <Wrap>
                     <Link to="/product/1">
                         <img src="images/jpg/moon-knight.jpg" alt=""/>
@@ -18,12 +13,17 @@ export const WeekTop = (props) => {
                 </Wrap>
                 <Wrap>
                     <Link to="/product/1">
-                        <img src="images/jpg/rogue-one.jpg" alt=""/>
+                        <img src="images/jpg/simpsons.jpg" alt=""/>
                     </Link>
                 </Wrap>
                 <Wrap>
                     <Link to="/product/1">
-                        <img src="images/jpg/simpsons.jpg" alt=""/>
+                        <img src="images/jpg/true-detective.jpg" alt=""/>
+                    </Link>
+                </Wrap>
+                <Wrap>
+                    <Link to="/product/1">
+                        <img src="images/jpg/rogue-one.jpg" alt=""/>
                     </Link>
                 </Wrap>
             </Content>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const NewOnDisney = (props) => {
     return (
         <Container>
-            <h4>Disney+ :</h4>
+            <h4>Disney+</h4>
             <Content>
             <Wrap>
                     <Link to="/product/1">

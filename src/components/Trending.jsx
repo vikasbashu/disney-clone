@@ -4,26 +4,26 @@ import { Link } from "react-router-dom";
 export const Trending = (props) => {
     return (
         <Container>
-            <h4>Trending :</h4>
+            <h4>Latest Release</h4>
             <Content>
                 <Wrap>
                     <Link to="/product/1">
-                        <img src="images/jpg/GOT.jpg" alt=""/>
+                        <img src="images/jpg/astronaut.jpg" alt=""/>
                     </Link>
                 </Wrap>
                 <Wrap>
                     <Link to="/product/1">
-                        <img src="images/jpg/sherlock.jpg" alt=""/>
+                        <img src="images/jpg/loki.jpg" alt=""/>
                     </Link>
                 </Wrap>
                 <Wrap>
                     <Link to="/product/1">
-                        <img src="images/jpg/true-detective.jpg" alt=""/>
+                        <img src="images/jpg/percy-jackson.jpg" alt=""/>
                     </Link>
                 </Wrap>
                 <Wrap>
                     <Link to="/product/1">
-                        <img src="images/jpg/miss-marvel.jpg" alt=""/>
+                        <img src="images/jpg/american-horror-story.jpg" alt=""/>
                     </Link>
                 </Wrap>
             </Content>
