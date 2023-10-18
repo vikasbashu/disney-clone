@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Recommended = (props) => {
     return (
         <Container>
-            <h4>Recommended :</h4>
+            <h4>Recommended</h4>
             <Content>
                 <Wrap>
                     <Link to="/product/1">
