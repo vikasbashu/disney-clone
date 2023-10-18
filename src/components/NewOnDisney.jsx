@@ -6,24 +6,24 @@ export const NewOnDisney = (props) => {
         <Container>
             <h4>Disney+ :</h4>
             <Content>
-                <Wrap>
+            <Wrap>
                     <Link to="/product/1">
-                        <img src="images/jpg/GOT.jpg" alt=""/>
+                        <img src="images/jpg/encore.jpg" alt=""/>
                     </Link>
                 </Wrap>
                 <Wrap>
                     <Link to="/product/1">
-                        <img src="images/jpg/sherlock.jpg" alt=""/>
+                        <img src="images/jpg/moon-knight.jpg" alt=""/>
                     </Link>
                 </Wrap>
                 <Wrap>
                     <Link to="/product/1">
-                        <img src="images/jpg/true-detective.jpg" alt=""/>
+                        <img src="images/jpg/rogue-one.jpg" alt=""/>
                     </Link>
                 </Wrap>
                 <Wrap>
                     <Link to="/product/1">
-                        <img src="images/jpg/miss-marvel.jpg" alt=""/>
+                        <img src="images/jpg/simpsons.jpg" alt=""/>
                     </Link>
                 </Wrap>
             </Content>
